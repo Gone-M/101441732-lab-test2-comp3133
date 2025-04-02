@@ -103,10 +103,6 @@ During the development of this application, I faced several challenges:
 
 3. **Responsive Design**: Ensuring the application looks good on all devices required careful planning of the layout and use of Angular Material's responsive grid system.
 
-## Screenshots
-
-![Mission List Page](./screenshots/mission-list.png)
-![Mission Details Page](./screenshots/mission-details.png)
 
 ## Future Enhancements
 
