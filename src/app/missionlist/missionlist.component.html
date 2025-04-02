@@ -1,0 +1,71 @@
+<div class="container">
+  <header>
+      <h1><i class="fas fa-rocket"></i> SpaceX Mission Launch List</h1>
+  </header>
+  
+  <!-- Insert filter component -->
+  <app-mission-filter 
+      [availableYears]="availableYears"
+      [availableRockets]="availableRockets"
+      (filtersChanged)="onFiltersChanged($event)">
+  </app-mission-filter>
+  
+  <div id="mission-container">
+      <!-- Loading state -->
+      <div *ngIf="isLoading" class="loading">
+          <i class="fas fa-spinner fa-spin"></i> Loading SpaceX mission data...
+      </div>
+      
+      <!-- Error state -->
+      <div *ngIf="errorMessage && !isLoading" class="error-message">
+          <p><i class="fas fa-exclamation-triangle"></i> Sorry, we couldn't load the SpaceX mission data.</p>
+          <p>Error: {{errorMessage}}</p>
+          <button (click)="fetchLaunches()" class="mission-link">Try Again</button>
+      </div>
+      
+      <!-- No results state -->
+      <div *ngIf="!isLoading && !errorMessage && missions.length === 0" class="no-results">
+          <i class="fas fa-search"></i>
+          <p>No missions found matching your criteria.</p>
+          <button (click)="resetFilters()" class="mission-link">Clear Filters</button>
+      </div>
+      
+      <!-- Mission list -->
+      <div *ngIf="!isLoading && !errorMessage && missions.length > 0" class="mission-list">
+          <app-mission-details 
+              *ngFor="let mission of missions" 
+              [mission]="mission">
+          </app-mission-details>
+      </div>
+  </div>
+  
+  <!-- Pagination -->
+  <div *ngIf="totalLaunches > 0" class="pagination">
+      <button [disabled]="currentPage === 1" (click)="previousPage()">
+          <i class="fas fa-chevron-left"></i> Previous
+      </button>
+      
+      <div class="page-info">
+          Page {{currentPage}} ({{getStartIndex()}}-{{getEndIndex()}} of {{totalLaunches}})
+      </div>
+      
+      <button [disabled]="currentPage * limitPerPage >= totalLaunches" (click)="nextPage()">
+          Next <i class="fas fa-chevron-right"></i>
+      </button>
+  </div>
+  
+  <!-- Historic missions section -->
+  <div class="historic-missions">
+      <h2>Early SpaceX Missions (2006-2009)</h2>
+      <div class="mission-list">
+          <app-mission-details 
+              *ngFor="let mission of historicMissions" 
+              [mission]="mission">
+          </app-mission-details>
+      </div>
+  </div>
+  
+  <footer>
+      <p>SpaceX Mission Data powered by the SpaceX API &copy; {{currentYear}}</p>
+  </footer>
+</div>

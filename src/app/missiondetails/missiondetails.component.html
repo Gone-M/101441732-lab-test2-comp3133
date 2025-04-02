@@ -1,0 +1,67 @@
+<div class="mission">
+  <div class="mission-image" [style.background-image]="'url(' + (mission.links?.patch?.small || '/assets/images/placeholder.png') + ')'"></div>
+  <div class="mission-content">
+      <div class="mission-header">
+          <span class="mission-number">Flight #{{mission.flight_number || 'N/A'}}</span>
+          <h2 class="mission-title">{{mission.name}}</h2>
+      </div>
+      <div class="mission-details-grid">
+          <div class="mission-detail">
+              <span class="detail-label">Launch Date:</span>
+              {{mission.date_utc | date:'MMM d, y'}}
+          </div>
+          <div class="mission-detail">
+              <span class="detail-label">Launch Year:</span>
+              {{mission.date_utc | date:'y'}}
+          </div>
+          <div class="mission-detail">
+              <span class="detail-label">Rocket:</span>
+              {{mission.rocket?.name || 'Unknown'}}
+          </div>
+          <div class="mission-detail">
+              <span class="detail-label">Rocket Type:</span>
+              {{mission.rocket?.type || 'Unknown'}}
+          </div>
+          <div class="mission-detail">
+              <span class="detail-label">Status:</span>
+              <span [ngStyle]="{'color': mission.success === true ? '#28a745' : 
+                                  mission.success === false ? '#dc3545' : '#fd7e14'}">
+                  {{mission.success === true ? 'Success' : 
+                    mission.success === false ? 'Failure' : 'Unknown'}}
+              </span>
+          </div>
+      </div>
+      <p class="mission-status" 
+         [ngClass]="{'success': mission.success === true, 
+                    'failure': mission.success === false, 
+                    'unknown': mission.success === undefined}">
+          {{mission.details || 'No details available for this mission.'}}
+      </p>
+      <div class="mission-links">
+          <a *ngIf="mission.links?.patch?.small" 
+             [href]="mission.links.patch.small" 
+             target="_blank" 
+             class="mission-link">
+              <i class="fas fa-image"></i> Mission Patch
+          </a>
+          <a *ngIf="mission.links?.article" 
+             [href]="mission.links.article" 
+             target="_blank" 
+             class="mission-link">
+              <i class="fas fa-newspaper"></i> Article
+          </a>
+          <a *ngIf="mission.links?.wikipedia" 
+             [href]="mission.links.wikipedia" 
+             target="_blank" 
+             class="mission-link">
+              <i class="fab fa-wikipedia-w"></i> Wikipedia
+          </a>
+          <a *ngIf="mission.links?.webcast" 
+             [href]="mission.links.webcast" 
+             target="_blank" 
+             class="mission-link">
+              <i class="fab fa-youtube"></i> Video
+          </a>
+      </div>
+  </div>
+</div>

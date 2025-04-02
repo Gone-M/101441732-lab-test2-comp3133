@@ -1,0 +1,170 @@
+/* Mission List Component Styles */
+.container {
+  max-width: 1100px;
+  margin: 20px auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+header {
+  background: linear-gradient(135deg, #005288 0%, #002a4e 100%);
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  position: relative;
+}
+
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #ff5722, #ff9800);
+}
+
+h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.loading {
+  text-align: center;
+  padding: 60px;
+  font-size: 18px;
+  color: #666;
+}
+
+.mission-list {
+  padding: 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 8px 18px;
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #005288;
+  color: white;
+}
+
+.pagination button:disabled {
+  background-color: #f2f2f2;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.page-info {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 14px;
+}
+
+.error-message {
+  color: #dc3545;
+  text-align: center;
+  padding: 30px;
+  background-color: #fff5f5;
+  border-radius: 6px;
+  margin: 20px;
+}
+
+.historic-missions {
+  margin-top: 40px;
+  border-top: 2px solid #eee;
+  padding-top: 30px;
+}
+
+.historic-missions h2 {
+  color: #005288;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+  position: relative;
+}
+
+.historic-missions h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #ff9800;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #666;
+  font-size: 14px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #eee;
+}
+
+/* No results message */
+.no-results {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  font-size: 18px;
+}
+
+.no-results i {
+  font-size: 48px;
+  margin-bottom: 15px;
+  color: #ccc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+      margin: 10px;
+  }
+  
+  h1 {
+      font-size: 28px;
+  }
+  
+  .pagination {
+      padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+      padding: 20px 15px;
+  }
+  
+  h1 {
+      font-size: 24px;
+  }
+  
+  .loading {
+      padding: 40px 20px;
+  }
+  
+  .pagination {
+      flex-wrap: wrap;
+  }
+}

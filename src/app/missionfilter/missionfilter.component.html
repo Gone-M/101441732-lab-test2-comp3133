@@ -1,0 +1,34 @@
+<div class="filter-controls">
+  <div class="filter-group">
+      <span class="filter-label">Year:</span>
+      <select id="year-filter" [(ngModel)]="selectedYear" name="yearFilter">
+          <option value="">All Years</option>
+          <option *ngFor="let year of availableYears" [value]="year">{{year}}</option>
+      </select>
+  </div>
+  
+  <div class="filter-group">
+      <span class="filter-label">Status:</span>
+      <select id="status-filter" [(ngModel)]="selectedStatus" name="statusFilter">
+          <option value="">All Statuses</option>
+          <option value="true">Success</option>
+          <option value="false">Failure</option>
+      </select>
+  </div>
+  
+  <div class="filter-group">
+      <span class="filter-label">Rocket:</span>
+      <select id="rocket-filter" [(ngModel)]="selectedRocket" name="rocketFilter">
+          <option value="">All Rockets</option>
+          <option *ngFor="let rocket of availableRockets" [value]="rocket">{{rocket}}</option>
+      </select>
+  </div>
+  
+  <button id="apply-filters" (click)="applyFilters()">
+      <i class="fas fa-filter"></i> Apply Filters
+  </button>
+  
+  <button class="reset-btn" (click)="resetFilters()" *ngIf="filtersApplied">
+      <i class="fas fa-undo"></i> Reset
+  </button>
+</div>
